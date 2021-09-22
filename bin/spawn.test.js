@@ -28,7 +28,6 @@ jest.mock('aws-sdk', () => {
 })
 
 const { Amplify, STS, config } = require('aws-sdk')
-jest.mock('axios')
 
 const MOCK_SIGNED_PATH = '/signedPath?signature=v3'
 beforeEach(() => {
@@ -129,7 +128,7 @@ test('loginViaApp', async () => {
     expect(obj).toEqual({
       host: 'sts.us-east-2.amazonaws.com',
       path:
-        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2FraincloudUserRole-dev&RoleSessionName=spawnLoginAssumedRole&Version=2011-06-15',
+        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2Fraincloud-dev-user&RoleSessionName=spawnLoginAssumedRole&Version=2011-06-15',
       region: 'us-east-2',
       service: 'sts',
       signQuery: true,
@@ -280,7 +279,7 @@ test('loginViaUrl', async () => {
     expect(obj).toEqual({
       host: 'sts.us-east-2.amazonaws.com',
       path:
-        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2FraincloudUserRole-dev&RoleSessionName=spawnLoginAssumedRole&Version=2011-06-15',
+        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2Fraincloud-dev-admin&RoleSessionName=spawnLoginAssumedRole&Version=2011-06-15',
       region: 'us-east-2',
       service: 'sts',
       signQuery: true,
@@ -315,5 +314,5 @@ test('loginViaUrl', async () => {
       ).toString('base64')}`,
     )
   })
-  await loginViaUrl('https://www.sprocs.com', {})
+  await loginViaUrl('https://www.sprocs.com', { admin: true })
 })

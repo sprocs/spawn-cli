@@ -99,7 +99,7 @@ const generateLoginSts = async (
 
     const roleArn =
       options.roleArn ||
-      `arn:aws:iam::${Account}:role/${sprocsAppName}UserRole-${backendEnv}`
+      `arn:aws:iam::${Account}:role/${sprocsAppName}-${backendEnv}-${options.admin ? 'admin' : 'user'}`
 
     logger.debug(chalk.dim('signing STS request to assume role', roleArn))
 

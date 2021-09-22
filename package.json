@@ -1,6 +1,6 @@
 {
   "name": "@sprocs/spawn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Login to sprocs apps",
   "main": "index.js",
   "repository": {
@@ -33,13 +33,5 @@
   },
   "devDependencies": {
     "jest": "^27.0.6"
-  },
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "modules": "auto"
-      }
-    ]
-  ]
+  }
 }
