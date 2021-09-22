@@ -1,0 +1,46 @@
+{
+  "name": "@sprocs/spawn",
+  "version": "0.1.0",
+  "description": "Login to sprocs apps",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sprocs/spawn-cli.git"
+  },
+  "bin": {
+    "spawn": "bin/spawn.js"
+  },
+  "scripts": {
+    "test": "jest --forceExit"
+  },
+  "author": {
+    "name": "sprocs",
+    "email": "dev@sprocs.com"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "aws-sdk": "^2.957.0",
+    "aws4": "^1.11.0",
+    "awscred": "^1.5.0",
+    "chalk": "^4.1.1",
+    "commander": "^8.1.0",
+    "consola": "^2.15.3",
+    "got": "^11.8.2",
+    "jsdom": "^17.0.0",
+    "node-fetch": "^3.0.0",
+    "open": "^8.2.1",
+    "query-string": "^7.0.1",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": "auto"
+      }
+    ]
+  ]
+}
