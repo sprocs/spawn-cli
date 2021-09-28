@@ -89,8 +89,8 @@ const generateLoginSts = async (
   logger.debug(chalk.dim('found AWS Account ID', Account))
 
   logger.debug(chalk.dim('loading AWS credentials to sign spawn request'))
-  awscred.loadCredentials(async (err, data) => {
-    if (err) {
+  awscred.loadCredentials(async (err, credentials) => {
+    if (err || !credentials) {
       logger.error(
         'Could not load AWS credentials. Try using AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY/AWS_REGION or AWS_PROFILE.',
       )
@@ -119,10 +119,11 @@ const generateLoginSts = async (
         service: 'sts',
         signQuery: true,
       },
-      data.credentials,
+      credentials,
     )
     const signedSpawnUrl = `https://${host}${path}`
     const stsB64 = Buffer.from(signedSpawnUrl).toString('base64')
+    logger.debug(chalk.dim('signed STS url', signedSpawnUrl))
 
     const spawnOpenUrl = `${appHost}?spawnStsUrl=${stsB64}`
     if (options.printOnly) {
