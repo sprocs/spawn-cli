@@ -1,6 +1,6 @@
 ## Overview
 
-[sprocs](https://sprocs.com) spawn-cli is a **password-less login cli** used to assume AWS roles and login to the app web UI's for sprocs apps.
+[sprocs](https://sprocs.com) spawn-cli is a **passwordless login cli** used to assume AWS roles and login to the app web UI's for sprocs apps.
 
 Most sprocs apps contain an `admin` and `user` AWS IAM Role that can be assumed
 by a local AWS profile with permission to do so. spawn-cli uses your current AWS
