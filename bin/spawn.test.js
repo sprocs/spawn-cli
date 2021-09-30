@@ -128,7 +128,7 @@ test('loginViaApp', async () => {
     expect(obj).toEqual({
       host: 'sts.us-east-2.amazonaws.com',
       path:
-        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2Fraincloud-dev-user&RoleSessionName=spawnLoginAssumedRole&Version=2011-06-15',
+        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2Fraincloud-dev-user&RoleSessionName=spawnCli-user-test-user&Version=2011-06-15',
       region: 'us-east-2',
       service: 'sts',
       signQuery: true,
@@ -142,6 +142,7 @@ test('loginViaApp', async () => {
           return new Promise((resolve) =>
             resolve({
               Account: '123',
+              Arn: 'arn:aws:iam::123:user/test-user',
             }),
           )
         },
@@ -279,7 +280,7 @@ test('loginViaUrl', async () => {
     expect(obj).toEqual({
       host: 'sts.us-east-2.amazonaws.com',
       path:
-        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2Fraincloud-dev-admin&RoleSessionName=spawnLoginAssumedRole&Version=2011-06-15',
+        '/?Action=AssumeRole&DurationSeconds=28800&RoleArn=arn%3Aaws%3Aiam%3A%3A123%3Arole%2Fraincloud-dev-admin&RoleSessionName=spawnCli-user-test-user&Version=2011-06-15',
       region: 'us-east-2',
       service: 'sts',
       signQuery: true,
@@ -301,6 +302,7 @@ test('loginViaUrl', async () => {
           return new Promise((resolve) =>
             resolve({
               Account: '123',
+              Arn: 'arn:aws:iam::123:user/test-user',
             }),
           )
         },

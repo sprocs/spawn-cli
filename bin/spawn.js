@@ -25,12 +25,16 @@ async function main() {
     .argument('<appUrl>', 'sprocs app url')
     .option('-r, --role-arn <roleArn>', 'override default role arn')
     .option(
-      '-s, --session-duration <sessionDuration>',
-      'override default 8 hour session duration (in seconds)',
-    )
-    .option(
       '-a, --admin',
       'login with the admin role instead of the default user role',
+    )
+    .option(
+      '-n, --session-name <sessionName>',
+      'override default STS session name',
+    )
+    .option(
+      '-s, --session-duration <sessionDuration>',
+      'override default 8 hour session duration (in seconds)',
     )
     .option(
       '-p, --print-only',
@@ -60,6 +64,10 @@ async function main() {
     .option(
       '-s, --session-duration <sessionDuration>',
       'override default 8 hour session duration (in seconds)',
+    )
+    .option(
+      '-n, --session-name <sessionName>',
+      'override default STS session name',
     )
     .option(
       '-a, --admin',

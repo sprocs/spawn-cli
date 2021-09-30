@@ -86,7 +86,6 @@ const generateLoginSts = async (
   const sts = new AWS.STS()
   logger.debug(chalk.dim('fetching AWS Account ID from current identity'))
   const { Arn, UserId, Account } = await sts.getCallerIdentity().promise()
-  logger.debug(chalk.dim('found AWS Account ID', Account))
 
   logger.debug(chalk.dim('loading AWS credentials to sign spawn request'))
   awscred.loadCredentials(async (err, credentials) => {
@@ -103,11 +102,12 @@ const generateLoginSts = async (
 
     logger.debug(chalk.dim('signing STS request to assume role', roleArn))
 
+    const splitArn = Arn.split(':')
     let queryStringStr = queryString.stringify({
       Version: '2011-06-15',
       Action: 'AssumeRole',
       RoleArn: roleArn,
-      RoleSessionName: 'spawnLoginAssumedRole',
+      RoleSessionName: options.sessionName || `spawnCli-${splitArn[splitArn.length-1]}`.replace(/[^\w+=,.@-]/g, '-').substring(0,64),
       DurationSeconds: options.sessionDuration || 3600 * 8, // 8 hours (need to change MaxSessionDuration for role)
     })
 
