@@ -143,8 +143,9 @@ const loginViaUrl = async (appUrl, options) => {
     },
   })
 
-  logger.debug(chalk.dim('fetching app url', appUrl))
-  const { body } = await got(appUrl)
+  let fullAppUrl = appUrl.match(/^http/i) ? appUrl : `https://${appUrl}`
+  logger.debug(chalk.dim('fetching app url', fullAppUrl))
+  const { body } = await got(fullAppUrl)
   const dom = new JSDOM(body)
   let sprocsConfig = {}
   Array.from(
@@ -157,9 +158,9 @@ const loginViaUrl = async (appUrl, options) => {
   const backendEnv = sprocsConfig['sprocs-user-branch'] || ''
   const sprocsAppRegion = sprocsConfig['sprocs-region'] || ''
   if (sprocsAppName.length && backendEnv.length) {
-    await generateLoginSts(appUrl, sprocsAppName, sprocsAppRegion, backendEnv, options)
+    await generateLoginSts(fullAppUrl, sprocsAppName, sprocsAppRegion, backendEnv, options)
   } else {
-    logger.error('failed to parse sprocs meta tags from app url', appUrl)
+    logger.error('failed to parse sprocs meta tags from app url', fullAppUrl)
     process.exit(1)
   }
 }
